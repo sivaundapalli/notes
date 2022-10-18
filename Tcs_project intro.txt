@@ -1,0 +1,73 @@
+Hi all Myself siva, i am from bhimavaram, andhrapradesh.
+I am having 3 years of IT experience in that 2 years completely on mulesoft development.
+Recent project which i have worked is telstra. which is a telecommunication
+company in australia, in this we deal with prepaid and postpaid customers.
+and i am happy to work in this project.
+Thats all about myself.
+
+
+
+
+The project which i have worked is JDA-PINC integration.
+
+where JDA is warehouse management system and PINC is yard management system.
+
+In this project we are dealing all kind of truck details 
+like trailer checkin,trailer checkout,trailer move,trailer load
+and what kind of material the trailer is carrying from one station
+to another station like different different site codes everying we are transfering via mulesoft.
+
+Coming to connectivity wise we have exposed REST API to JDA
+via API call we used to get the data.
+and whatever the data we are getting from souce system which is in XML Format.
+target system is expecting in JSON Format so,
+we are transforming XML to JSON Conversion in Transform message 
+and sending it into PINC.
+
+so,we are transforming XML to JSON Conversion in Transform message
+and sending it into PINC.
+
+Based on business mapping sheets we have done the transformation logic
+and send it to the PINC.
+
+Coming to the error handling part we are handling globally,
+ so whenever there's an issue in the FLOW
+ we triggering CLOUDHUB Notifications with proper error message to get to know
+ why the message was not get delivered to the target system.
+
+coming to security part we are securing our appication with client ID enforcement policy.
+
+and code repositor is BITBUCKET and Deployment Pipeline is CI/CD Pipeline 
+which is Jenkiens Pipeline.
+
+Resources: 9
+Truck checkin
+Truck Checkout
+Truck Seal
+Truck Location
+Appointment
+
+
+Connectors:
+Scheduler
+Object STore
+HTTP
+Anympoint MQ
+Cloud HUB
+FTP
+
+roles and responsibilities:
+===========================
+
+1. Developing and Implementing RAML based APIs using Anypoint Platform.
+2. Designed and developed Mule ESB Projects using different connectors.
+3. Worked on Cache Scope, Object Store, HTTP,  Database, Transform message , SFTP, DataWeave
+4. Having experience in Dataweave to access payload, message attributes and variables in and accross Mule Flows
+5. Developed Munit flows for unit testing and covered 85% through out the project.
+6. worked on basic and oauth 2.0 Security authentication policies
+7. In my project we are deployed the application in runtime manager.
+
+
+
+
+

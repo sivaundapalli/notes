@@ -1,0 +1,10 @@
+Mule-Important
+=================
+
+Write path: #['Myfile' ++ (now() as String {format:'yyyy-MM-dd-hh-mm-ss'}) ++ (random() * 1000 ++'.txt']
+
+
+++++++++++++++++++++
+password
+
+azure sql db--- Naga1234

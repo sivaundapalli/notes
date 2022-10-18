@@ -1,0 +1,245 @@
+Mulesoft Q&A
+============
+1.What Is Anypoint MQ?
+Anypoint MQ:
+
+Is a cloud messaging service that performs messages asynchronous between applications such as queuing and pub/sub.
+Is managed easily using Anypoint Platform.
+Supports large payloads, encryption, queuing, and publish/subscribe (pub/sub)paradigms.
+Enables easy connection to non-Mule applications using the REST API.
+Provides dead-letter queue (DLQ) for undeliverable messages.
+Displays usage statistics on the number of messages and API requests.
+
+Operations 
+The Anypoint MQ connector provides five operations:
+
+Publish to publish the message to the Queue.
+Subscriber to subscribe to the queue and listen for the receiving message.
+Consumer to consume a message from the queue.
+Ack to send an acknowledgement to the queue about the successful consumption of the message and delete the message from in-flight status.
+Nack to send negative acknowledgement to the queue stating the consumed message is not processed successfully
+   changes the status of the message from in-flight to in-queue to be consumed again by an available consumer.
+
+https://dzone.com/articles/how-to-use-anypoint-mq
+
+2.What is Object store and why it is used?
+It is to store the data in key, value pairs in transient or persistent memory. We will mainly store access tokens, water marks in the object store.
+Once we store the data in Object store, we can retrieve, delete them from the object store using object store component.
+
+Persistent: This is the default option for the ObjectStore. By using this option, stored data stays in the system even if the system or its runtime is down.
+In-Memory: By not selecting the persistent option, ObjectStore by default becomes in-memory. This means that data is available only when the runtime is up.
+
+3. Difference b/w SOAP & REST?
+
+https://www.javatpoint.com/soap-vs-rest-web-services
+
+4.Difference b/w URI params  & Query params?
+Let's consider an example where you want identify the employee on the basis of employeeID, and in that case, you will be using the URI param.
+
+GET /employee/{employeeID}
+
+Take another example where you want to filter the employee on the basis of designation, and in that case, you will be using Query Parameter.
+
+GET /employee?designation=SSE
+
+5, API LED connectivity??
+API LED architecture is recommended by MuleSoft. Because of this architecture, we can reuse the APIs in future whenever required. 
+There are 3 layers:
+I.	System API’s:
+a.	System APIs are used to connect with the target systems like Amazon, Database, SAP, Hadoop.
+II.	Process API’s:
+a.	Process APIs are built to compose or combine two or more system API’s. All the business logics will be implemented using Process API’s.
+b.	Process API’s and System APIs should not be exposed to outside world.
+III. Experience API’s:
+a.	Will be exposed for consumers or public.
+b.	Source request/payload validations will be performed in experience API using RAML data types.
+    youtube video https://www.youtube.com/watch?v=Ue8YYxynxc4
+
+6.Routers worked on????
+--->API KitRouter:
+Based on an API RAML file, it routes arriving calls to the corresponding flow depending on the resource and method. (https://raml.org/)
+--> Choice Router: 
+ The Choice router dynamically routes messages through a flow according to a set of DataWeave expressions that evaluate message content.
+   Each expression is associated with a different routing option.
+-->Scatter Gatter:	
+Sends a request message to multiple targets concurrently. It collects the responses from all routes, and aggregates them into a single message.
+
+7.Scheduler Endpoint (Trigger)----- https://docs.mulesoft.com/mule-runtime/4.4/scheduler-concept
+                                    https://docs.mulesoft.com/runtime-manager/managing-schedules
+The Scheduler component enables you to trigger a flow when a time-based condition is met. You can configure it to be triggered at a regular interval or give it a more flexible cron expression. For example, a Scheduler might trigger an event to start a flow every 5 seconds.
+
+Consider the following when you implement a Scheduler in your Mule application:
+
+Schedulers use the same timezone as the machine on which Mule is running. However, if an application is running in CloudHub, the Scheduler conforms to the UTC timezone, regardless of the geographic region in which the application is running.
+
+The disallowConcurrentExecution property enables you to prevent the Scheduler from re-triggering a flow until it finishes processing. See <scheduler> Properties.
+
+If back-pressure occurs because no resources are available at the time of the scheduled trigger, Mule skips the trigger.
+
+8.What is API Gateway?
+ -->API Gateway is embedded inside mule runtime, using this gateway any user can apply basic authentication policy on top of Mule application.
+ 
+9.LOOKUP function in mule 4??
+https://docs.mulesoft.com/dataweave/2.4/dw-mule-functions-lookup
+
+10.DATAWEAVE EXAMPLES 
+    https://docs.mulesoft.com/dataweave/2.4/dataweave-cookbook
+    
+	https://www.jerney.io/dataweave-practice-exercises/
+
+=================================================================================================
+
+1.	Introduce yourself and current project?
+Talk minimum 5 minutes.
+<<Your name, education details, current organization details, roles and responsibilities, project summary>>
+2.	What is RAML?
+RAML is Restful API Modelling Language. It is used to write the specifications for an API.
+3.	Difference between Traits & Resource Types?
+Resource types & Traits are API fragments. Resource Types are used when there is any common code within resource level. Traits are used to define common attributes under HTTP method level such as GET, POST, PUT. 
+4.	How can we validate source payload using RAML?
+By defining data types, we can validate the payload in RAML.
+5.	Describe API Life Cycle?
+•	Define the API specifications using RAML language in Design Centre.
+•	Publish the RAML to exchange.
+•	Import the RAML file to Studio and develop the flows as per requirement
+•	Deploy the applications into Cloud hub using Run Time Manager.
+•	Apply the policies using API Manager.
+6.	What is Auto discovery ID and why it is useful?
+Auto discovery ID or API ID will be generated when we create any application in API manager.
+ Once we get the API ID, we have to configure in global elements of our application.
+ 
+7.	Explain API LED architecture?
+API LED architecture is recommended by MuleSoft. Because of this architecture, we can reuse the APIs in future whenever required. 
+There are 3 layers:
+I.	System API’s:
+a.	System APIs are used to connect with the target systems like Amazon, Database, SAP, Hadoop.
+II.	Process API’s:
+a.	Process APIs are built to compose or combine two or more system API’s. All the business logics will be implemented using Process API’s.
+b.	Process API’s and System APIs should not be exposed to outside world.
+III.	Experience API’s:
+a.	Will be exposed for consumers or public.
+b.	Source request/payload validations will be performed in experience API using RAML data types.
+
+8.	What are the different policies you applied in your project?
+Policies are used to secure the API’s and policies will be applied using API manager.
+I have applied below policies in my recent project:
+Basic Authentication policy:
+We will have to provide username and password for this policy. Consumers has to pass username and password to every request to access the api’s.
+Client ID Enforcement Policy:
+We will create the client id and client secret for every client application. Client id and client secret can be generated from Exchange. 
+Rate Limiting Policy:
+If we apply this policy, only specified number of requests can be sent to API. For example, within 1 minute, only 10 requests have to be processed.
+ If we get 11th request, the API will throw too many requests error. By using this policy, we can reduce the incoming request traffic. 
+
+9.	What are the connectors you worked on?
+I worked with Database, HTTP, FTP, SFTP, Amazon connectors.
+
+10.	What functions you have used in Data weave?
+I worked on Map, Map object, Flatten, now, filter, orderBy, groupBy functions.
+
+11.	Can you explain difference between Map & Map object?
+Map is used with Array of objects or Array of elements. Output will be in Array format.
+MapObject is used to iterate over the keys and values of the object. Output will be in the object format.
+
+12.	Can you explain scopes in Mule 4?
+Until Successful Scope:
+This scope is used with the target systems. If any connector is failed due to any reason, this scope will retry until it is executed.
+Cache Scope:
+Cache scope will store previous request and responses. Whenever we get similar request, it will retrieve the data from memory instead of calling actual target system again.
+Async Scope:
+Async scope is executed in a fire & forget manner. This scope will create a new thread and execute the processors separately.
+Processes the messages asynchronously.
+Does not pass data back to the main flow.
+
+13.	How you will secure properties?
+We will secure the properties like passwords using encryption algorithms. In Mule, we have secure properties module, by using secure property jar file, we can encrypt the passwords or credentials using encryption key. 
+
+14.	How you will mask or hide the properties in runtime manager?
+We will add secure properties field in mule-artifact.json file to mask the runtime properties in platform. So that no body can see the actual values.
+ 
+15.	How can we add 2 hours to the current time?
+We can add  2 hours to the current time using +PT2H inside pipe symbol as |PT2H|
+ 
+
+16.	Write syntax for distinctBy function?
+distinctBy is used to remove the duplicate fields from the payload.
+“payload distinctBy($.name)”
+
+17.	Write syntax for filter function?
+Filter is the function used to filter the values from the array based on some condition
+payload filter ($.age > 30)
+
+18.	How do you call a flow from DWL?
+We can call a flow using vlookup function in DWL. We need to pass the flow name and timeout to the vlookup function.
+
+19.	Exception Handling in Mule 4?
+There are 3 types of exception handling in Mule 4.
+I.	On error continue
+When there is any error in sub flow, if we want the process to be continued in main flow, we will use on error continue. 
+On error continue will give success status code always. 
+II.	On error propagate
+On error propagate will throw the exception immediately when there is any error.
+On error propagate always gives failure status code. By default, status code is 500.
+III.	Raise error
+We can raise custom exceptions by using Raise error component. 
+
+20.	What is Object store and why it is used?
+It is to store the data in key, value pairs in transient or persistent memory. We will mainly store access tokens, water marks in the object store.
+Once we store the data in Object store, we can retrieve, delete them from the object store using object store component. 
+21.	How you will deploy the application to Cloud Hub?
+Once we complete the implementation in Studio,
+	Export the jar file
+	We have to open Anpoint platform -> Runtime manager->
+	Click on settings and upload the jar file.
+
+22.	What is Worker and vCore?
+Worker is kind of a system; it will have mule runtime and OS installed.
+vCore is memory. We can allocate the vCore based on our application requirement.
+
+23.	What code repository you are using?
+We are using GIT repository.
+
+24.	Any idea on CICD pipelines?
+CI CD is used for continuous integration and continuous deployment.
+ It is used to deploy the applications to cloudhub automatically whenever there is a code change. 
+ I am not sure about CICD pipelines. As a developer, we will commit the code to feature branch and raise the Pull request.
+ Our lead will review the code and approve the pull request. Once the request is approved,
+ my lead will run the CICD pipeline to deploy the application to cloudhub. 
+
+25.	I have 100 records in a csv file, how can we write them into database sequentially.
+ How you will design the flow & how you will handle the errors if any record is invalid.
+We can use “on new or updated file” to read the csv file, 
+To process the data sequentially, we have to use for-each,
+Inside for-each, we can place a DB insert connector to insert the data.
+We can use on-error-continue to log the error and continue with other records.
+
+26.	Can we process 1GB file in 0.1 vCore ?
+Yes. We can process 1GB file using 0.1 vCore. 
+0.1vCore will have only 512 mb memory but it will have 8gb storage space.
+Mule 4 flows are enabled with streaming by default,
+Using file-store-streaming strategy, we can process 1GB file.
+
+27.	How can we accept multiple status codes a success codes in HTTP request call?
+We can define multiple status codes in advanced properties of HTTP request.
+We have a response validator in HTTP request.
+
+28.	How can we access uriParams in Dataweave?
+We can access it using attributes.
+“attributes.uriparams.param-name”
+
+29.	How to replace a special character from given string?
+Using replace function, we can remove special characters.
+
+Open: https://developer.mulesoft.com/learn/dataweave/
+
+ 
+30.	How to display current timestamp?
+Using now function.
+ 
+31.	How to check if the given value is even or odd in Mule 4?
+By using isEven or isOdd function. 
+
+32.	How to display only DATE by using now function?
+ 
+33.	What is MUNIT?
+MUNIT is used to write the automated test cases. By using Munit, we can calculate the flow coverages
