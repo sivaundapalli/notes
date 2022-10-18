@@ -6,8 +6,6 @@ and i am happy to work in this project.
 Thats all about myself.
 
 
-
-
 The project which i have worked is JDA-PINC integration.
 
 where JDA is warehouse management system and PINC is yard management system.
